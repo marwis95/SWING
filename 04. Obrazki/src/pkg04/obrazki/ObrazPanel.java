@@ -41,6 +41,9 @@ public class ObrazPanel extends JPanel{
     public void paintComponent(Graphics g){
         Graphics2D g2d = (Graphics2D)g;
         g2d.drawImage(image, 0, 0, this);
+        g2d.drawRect(10, 10, 50, 50);
+        g2d.drawString("Obrazki", 50, 50);
+        g2d.drawLine(0, 0, image.getWidth(), image.getHeight());
     }
     
 }
