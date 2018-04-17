@@ -88,7 +88,7 @@ public class MyMouse extends JPanel implements MouseListener, MouseMotionListene
         for(Point p : points){
             x = (int) p.getX();
             y = (int) p.getY();
-            g2d.fillRect(x, y, 10, 10);
+            g2d.fillRect(x, y, 50, 50);
         }
         
     }

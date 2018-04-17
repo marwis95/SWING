@@ -19,10 +19,9 @@ public class MyFrame extends JFrame{
         super("Mouse");
         add(new MyMouse());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
+        pack();
         setVisible(true);
-        setSize(800, 600);
-        
+       
     }
     
 }
