@@ -20,70 +20,72 @@ import pkg10.pola.tekstowe.LoginListener;
  *
  * @author Dell E5510
  */
-public class LoginPanel extends JPanel{
-    
-    private JTextField loginField; //nazwa
-    private JPasswordField passField; //hasło
-    private JButton submitBtn; //submit
-    private LoginListener listener; //listener
-    
-    public String getName(){
-        return loginField.getText();
-    }//Pobieranie nazwy użytkownika
-   
-    
-    public String getPass(){
-        String pass="";
-        char[] passChr = passField.getPassword();
-        
-        for(int i=0; i<passChr.length; i++){
-            pass += passChr[i];
+public class LoginPanel extends JPanel {
+    private JTextField nameField; //pole na nazwę
+    private JPasswordField passField; //pole na hasło
+    private JButton loginButton; //przycisk logowania
+    private LoginListener listener; //słuchacz przycisku
+ 
+    /**
+     * @return wprowadzona nazwa użytkownika
+     */
+    public String getName() {
+        return nameField.getText();
+    }
+ 
+    /**
+     * @return wprowadzone przez użytkownika hasło
+     */
+    public String getPassword() {
+        String password = "";
+        char[] pass = passField.getPassword();
+        for(int i=0; i<pass.length; i++) {
+            password += pass[i];
         }
-        
-        return pass;
-    }//Pobieranie hasła i konwertowanie na String
-    
-    
-    public LoginPanel(LoginListener loginListener){
+        return password;
+    }
+ 
+    public LoginPanel(LoginListener listener) {
         super();
-        
-        //Ustawianie layoutu
+        // ustawiamy layout
         GridBagLayout gridBag = new GridBagLayout();
         GridBagConstraints constraints = new GridBagConstraints();
-        
         constraints.fill = GridBagConstraints.CENTER;
         gridBag.setConstraints(this, constraints);
         setLayout(gridBag);
-        
-        //panel logowania z listenerem
+        // tworzymy komponenty logowania
         this.listener = listener;
         this.listener.setPanel(this);
-        
         createComponents();
     }
-    
-    
-    private void createComponents(){
-        
-        JLabel login = new JLabel("Login: ");
-        JLabel password = new JLabel("Haslo: ");
-        
-        //Panel do logowania
-        JPanel loginPanel = new JPanel(new GridLayout(2, 2));
-        loginPanel.add(login);
-        loginPanel.add(loginField);
-        loginPanel.add(password);
-        loginField.add(passField);
-        submitBtn = new JButton("Zaloguj");
-        submitBtn.addActionListener(listener);
-        
-        //Panel pomocniczy
+ 
+    /**
+     * Metoda, która tworzy etykiety i pola do wprowadzania danych.
+     */
+    private void createComponents() {
+        JLabel name = new JLabel("Name: ");
+        JLabel password = new JLabel("Password: ");
+        nameField = new JTextField();
+        passField = new JPasswordField();
+ 
+        //pomocniczy panel do wprowadzania danych
+        JPanel inputPanel = new JPanel();
+        inputPanel.setLayout(new GridLayout(2, 2));
+        inputPanel.add(name);
+        inputPanel.add(nameField);
+        inputPanel.add(password);
+        inputPanel.add(passField);
+        //tworzymy przycisk logowania
+        loginButton = new JButton("Zaloguj");
+        loginButton.addActionListener(listener);
+ 
+        //pomocniczy panel do wyśrodkowania elementów
         JPanel parentPanel = new JPanel();
         parentPanel.setLayout(new BorderLayout());
-        parentPanel.add(loginPanel, BorderLayout.CENTER);
-        parentPanel.add(submitBtn, BorderLayout.SOUTH);
+        parentPanel.add(inputPanel, BorderLayout.CENTER);
+        parentPanel.add(loginButton, BorderLayout.SOUTH);
+ 
+        // dodajemy do głównego panelu
         this.add(parentPanel);
-        
-    }//metoda do tworzenia komponentow
-    
+    }
 }

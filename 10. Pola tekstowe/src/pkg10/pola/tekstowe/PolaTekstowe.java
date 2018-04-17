@@ -5,6 +5,8 @@
  */
 package pkg10.pola.tekstowe;
 
+import java.awt.EventQueue;
+
 /**
  *
  * @author Dell E5510
@@ -15,7 +17,14 @@ public class PolaTekstowe {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        EventQueue.invokeLater(new Runnable(){
+        
+            @Override
+            public void run(){
+                new MyFrame();
+            }
+            
+        });
     }
     
 }

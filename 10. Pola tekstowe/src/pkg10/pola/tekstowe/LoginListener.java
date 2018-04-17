@@ -8,6 +8,8 @@ package pkg10.pola.tekstowe;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -27,10 +29,22 @@ public class LoginListener implements ActionListener{
     } 
 
     @Override
-    public void actionPerformed(ActionEvent e) {
-       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        System.out.println("Main");
+    public void actionPerformed(ActionEvent event) {
+        String name = loginPanel.getName();
+        String password = loginPanel.getPassword();
+        if (Validator.auth(name, password)) {
+            SwingUtilities.invokeLater(new Runnable() {
+                @Override
+                public void run() {
+                    // panel z edytorem html
+                    JPanel htmlPanel = new HTMLPanel();
+                    // usuwamy panel logowania
+                    frame.getContentPane().removeAll();
+                    // dodajemy panel html i odświeżamy widok
+                    frame.add(htmlPanel);
+                    frame.validate();
+                }
+            });
+        }
     }
-    
-    
 }
