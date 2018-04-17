@@ -14,11 +14,10 @@ import javax.swing.JButton;
  * @author Dell E5510
  */
 public class MyButton extends JButton implements ActionListener{
-
-    
+	
     
     @Override
     public void actionPerformed(ActionEvent arg0) {
-        System.out.println("Pressed");
+            System.out.println("Pressed");
     }
 }
